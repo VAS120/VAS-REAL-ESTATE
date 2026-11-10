@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Bellagio Hillside Sanctuary | VAS Estates Luxury Real Estate</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .floor-plan-nav {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .floor-plan-tab {
+      padding: 0.6rem 1.25rem;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      background: white;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .floor-plan-tab.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    .floor-plan-content {
+      display: none;
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+      text-align: center;
+    }
+    .floor-plan-content.active {
+      display: block;
+    }
+    .amenities-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin: 2rem 0;
+    }
+    @media (max-width: 900px) {
+      .amenities-list { grid-template-columns: 1fr 1fr; }
+      .pdetails-main-grid { grid-template-columns: 1fr !important; }
+    }
+    @media (max-width: 600px) {
+      .amenities-list { grid-template-columns: 1fr; }
+    }
+    .amenity-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .amenity-item i {
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body id="property-details-page-root">
+
+  <!-- Top Announcement Bar -->
+  <div class="topbar">
+    <div class="container topbar-content">
+      <div class="topbar-left">
+        <span class="topbar-item"><i class="fa-solid fa-location-dot"></i> Airport Residential Area, Accra, Ghana</span>
+        <span class="topbar-item"><i class="fa-solid fa-phone"></i> +233 599 120 927</span>
+        <span class="topbar-item"><i class="fa-solid fa-envelope"></i> somuahvincent18@gmail.com</span>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-socials">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://wa.me/233599120927" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <div class="topbar-item">
+          <a href="login.html"><i class="fa-regular fa-user"></i> Client Portal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-building-shield"></i></div>
+        <div class="logo-text"><span class="logo-title">VAS</span><span class="logo-subtitle">ESTATES LUXURY</span></div>
+      </a>
+
+      <nav class="nav-menu">
+        <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
+        <div class="nav-item"><a href="about.html" class="nav-link">About Us</a></div>
+        <div class="nav-item">
+          <a href="properties.html" class="nav-link active">Properties <i class="fa-solid fa-angle-down" style="font-size: 0.75rem;"></i></a>
+          <div class="dropdown-menu">
+            <a href="properties.html" class="dropdown-item"><i class="fa-solid fa-border-all"></i> All Properties</a>
+            <a href="houses.html" class="dropdown-item"><i class="fa-solid fa-house"></i> Luxury Houses & Villas</a>
+            <a href="apartments.html" class="dropdown-item"><i class="fa-solid fa-building"></i> Penthouses & Condos</a>
+            <a href="land.html" class="dropdown-item"><i class="fa-solid fa-mountain-sun"></i> Land & Plots</a>
+            <a href="commercial.html" class="dropdown-item"><i class="fa-solid fa-briefcase"></i> Commercial Assets</a>
+            <a href="rent.html" class="dropdown-item"><i class="fa-solid fa-key"></i> Properties for Rent</a>
+            <a href="sale.html" class="dropdown-item"><i class="fa-solid fa-tag"></i> Properties for Sale</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#" class="nav-link">Pages <i class="fa-solid fa-angle-down" style="font-size: 0.75rem;"></i></a>
+          <div class="dropdown-menu">
+            <a href="services.html" class="dropdown-item"><i class="fa-solid fa-handshake"></i> Our Services</a>
+            <a href="agents.html" class="dropdown-item"><i class="fa-solid fa-users"></i> Meet Our Agents</a>
+            <a href="gallery.html" class="dropdown-item"><i class="fa-regular fa-image"></i> Architectural Gallery</a>
+            <a href="testimonials.html" class="dropdown-item"><i class="fa-solid fa-comment-dots"></i> Client Testimonials</a>
+            <a href="faq.html" class="dropdown-item"><i class="fa-regular fa-circle-question"></i> FAQ</a>
+            <a href="enquiry.html" class="dropdown-item"><i class="fa-regular fa-paper-plane"></i> Book a Private Tour</a>
+            <a href="admin.html" class="dropdown-item" style="border-top: 1px solid var(--border-light); color: var(--accent);"><i class="fa-solid fa-lock"></i> Admin Dashboard</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="blog.html" class="nav-link">Journal</a></div>
+        <div class="nav-item"><a href="contact.html" class="nav-link">Contact</a></div>
+      </nav>
+
+      <div class="header-actions">
+        <a href="properties.html" class="header-fav-btn" title="Saved Properties">
+          <i class="fa-regular fa-heart"></i>
+          <span class="header-fav-count">0</span>
+        </a>
+        <a href="enquiry.html" class="btn btn-gold btn-sm btn-post">
+          <i class="fa-solid fa-calendar-check"></i> Book Viewing
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Property Details Container -->
+  <section class="section" style="padding-top: 2rem;">
+    <div class="container">
+      
+      <!-- Breadcrumbs -->
+      <div style="margin-bottom: 1.5rem; font-size: 0.88rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+        <a href="index.html" style="color: var(--accent);">Home</a>
+        <i class="fa-solid fa-angle-right" style="font-size: 0.75rem;"></i>
+        <a href="properties.html" style="color: var(--accent);">Properties</a>
+        <i class="fa-solid fa-angle-right" style="font-size: 0.75rem;"></i>
+        <span id="pdetail-breadcrumb-title">The Bellagio Hillside Sanctuary</span>
+      </div>
+
+      <!-- Title & Price Bar -->
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2rem;">
+        <div>
+          <div style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap;">
+            <span class="badge badge-sale" id="pdetail-status">For Sale</span>
+            <span class="badge badge-featured"><i class="fa-solid fa-star"></i> Featured Mandate</span>
+            <span style="font-size: 0.85rem; color: var(--text-muted);" id="pdetail-ref">Ref: #VAS-9842</span>
+          </div>
+          <h1 style="font-size: 2.6rem; margin-bottom: 0.35rem; line-height: 1.2;" id="pdetail-title">The Bellagio Hillside Sanctuary</h1>
+          <p style="font-size: 1.05rem;" id="pdetail-location">
+            <i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> The Diplomatic Ridge, Cantonments, Accra, Ghana
+          </p>
+        </div>
+        <div style="text-align: right;">
+          <div class="property-price-tag" id="pdetail-price" data-base-price="8950000" style="font-family: var(--font-heading); font-size: 2.75rem; font-weight: 700; color: var(--primary);">$8,950,000</div>
+          <div style="font-size: 0.9rem; color: var(--text-muted);" id="pdetail-price-sub">$972 / sqft &bull; Verified Clear Title</div>
+        </div>
+      </div>
+
+      <!-- High-Res Multi-Image Gallery Suite Container (Rendered dynamically) -->
+      <div id="pdetail-gallery-root">
+        <!-- Rendered by js/property-features.js -->
+      </div>
+
+      <!-- Main Layout: Content (Left) + Sidebar (Right) -->
+      <div class="pdetails-main-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem;">
+        
+        <!-- Left Content Column -->
+        <div>
+          
+          <!-- Verified Dimensions & Specifications Section -->
+          <div id="pdetail-dimensions-root">
+            <!-- Rendered by js/property-features.js -->
+          </div>
+
+          <!-- Room Measurements Laser Breakdown -->
+          <div id="pdetail-rooms-root">
+            <!-- Rendered by js/property-features.js -->
+          </div>
+
+          <!-- Description Section -->
+          <div style="margin-bottom: 3rem;">
+            <h3 style="font-size: 1.6rem; margin-bottom: 1rem;"><i class="fa-solid fa-landmark" style="color: var(--accent);"></i> Architectural Narrative</h3>
+            <div id="pdetail-description">
+              <p style="line-height: 1.8; margin-bottom: 1rem;">
+                Perched within the most secure diplomatic ridgeline of Cantonments, Accra, The Bellagio Hillside Sanctuary represents the benchmark of West African prime luxury architecture. Designed for sovereign dignitaries, heads of state, and global investors, the residence seamlessly unites 9,200 sqft of refined living area with over 4,500 sqft of private travertine sun decks.
+              </p>
+            </div>
+          </div>
+
+          <!-- Amenities Checklist -->
+          <div style="margin-bottom: 3rem;">
+            <h3 style="font-size: 1.6rem; margin-bottom: 1.25rem;"><i class="fa-solid fa-shield-halved" style="color: var(--accent);"></i> Curated Amenities & Luxuries</h3>
+            <div id="pdetail-amenities-root">
+              <!-- Rendered by js/property-features.js -->
+            </div>
+          </div>
+
+          <!-- Floor Plans Section -->
+          <div style="margin-bottom: 3rem;">
+            <h3 style="font-size: 1.6rem; margin-bottom: 1rem;"><i class="fa-solid fa-compass-drafting" style="color: var(--accent);"></i> Architectural Floor Plans</h3>
+            <div class="floor-plan-nav">
+              <button class="floor-plan-tab active" data-target="plan-ground">Level 1: Main Living & Pool Terrace</button>
+              <button class="floor-plan-tab" data-target="plan-upper">Level 2: Presidential & Guest Suites</button>
+              <button class="floor-plan-tab" data-target="plan-lower">Level 3: Cinema, Spa & Entertainment</button>
+            </div>
+
+            <div id="plan-ground" class="floor-plan-content active">
+              <h4 style="margin-bottom: 0.5rem;">Ground Level & Pool Terrace (4,800 sq ft)</h4>
+              <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Grand atrium, formal salon, dual chef kitchens, outdoor dining pavilion, infinity pool lounge.</p>
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80" alt="Floor Plan Level 1" style="max-height: 350px; width: 100%; border-radius: var(--radius-sm); object-fit: cover;">
+            </div>
+
+            <div id="plan-upper" class="floor-plan-content">
+              <h4 style="margin-bottom: 0.5rem;">Upper Level: Master & Junior Suites (3,100 sq ft)</h4>
+              <p style="color: var(--text-muted); margin-bottom: 1.5rem;">4 en-suite guest suites, primary executive wing, dual private balconies, morning coffee bar.</p>
+              <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80" alt="Floor Plan Level 2" style="max-height: 350px; width: 100%; border-radius: var(--radius-sm); object-fit: cover;">
+            </div>
+
+            <div id="plan-lower" class="floor-plan-content">
+              <h4 style="margin-bottom: 0.5rem;">Lower Level: Entertainment & Wellness (1,300 sq ft)</h4>
+              <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Dolby Atmos theatre, wine tasting vault, Finnish sauna, gym, staff quarters.</p>
+              <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80" alt="Floor Plan Level 3" style="max-height: 350px; width: 100%; border-radius: var(--radius-sm); object-fit: cover;">
+            </div>
+          </div>
+
+          <!-- Interactive Location & Google Maps Section -->
+          <div id="pdetail-map-root">
+            <!-- Rendered by js/property-features.js -->
+          </div>
+
+          <!-- Interactive Mortgage & Investment Estimator -->
+          <div class="calculator-box" style="margin-bottom: 3rem;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-calculator" style="color: var(--accent);"></i> Real-Time Mortgage & Investment Estimator</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">Customize loan terms and interest rates to calculate your estimated monthly commitment.</p>
+            
+            <form id="mortgage-calc-form" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label class="form-label">Total Purchase Price ($)</label>
+                <input type="number" id="calc-price" class="form-control" value="8950000">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Down Payment ($)</label>
+                <input type="number" id="calc-down" class="form-control" value="1790000">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Interest Rate (%)</label>
+                <input type="number" step="0.05" id="calc-interest" class="form-control" value="6.25">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Loan Term (Years)</label>
+                <select id="calc-term" class="form-control">
+                  <option value="30">30 Years Fixed</option>
+                  <option value="15">15 Years Fixed</option>
+                  <option value="20">20 Years Fixed</option>
+                </select>
+              </div>
+            </form>
+
+            <div class="calc-result-box">
+              <span style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; color: var(--text-light);">Estimated Monthly Investment</span>
+              <div class="calc-result-amount" id="calc-monthly-total">$53,100</div>
+              <div style="display: flex; justify-content: center; gap: 2rem; font-size: 0.85rem; color: var(--text-light); margin-top: 0.5rem; flex-wrap: wrap;">
+                <span>Principal & Interest: <strong id="calc-principal-total" style="color: white;">$44,050</strong></span>
+                <span>Taxes & Ins: <strong id="calc-tax-total" style="color: white;">$9,050</strong></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Agent & Action Forms -->
+        <div>
+          
+          <!-- Agent Card -->
+          <div style="background: white; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 2rem; box-shadow: var(--shadow-md); margin-bottom: 2rem; position: sticky; top: 100px;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+              <img src="images/founder/vincent-somuah.jpg" alt="Vincent Somuah" style="width: 75px; height: 75px; border-radius: 50%; object-fit: cover; object-position: top center; border: 2px solid var(--accent); box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+              <div>
+                <h4 style="font-size: 1.2rem; margin-bottom: 0.2rem;"><a href="agent-details.html">Vincent Somuah</a></h4>
+                <div style="font-size: 0.8rem; font-weight: 700; color: var(--accent); text-transform: uppercase;">Founder & Managing Principal Broker</div>
+                <div style="font-size: 0.82rem; color: var(--text-muted);"><i class="fa-solid fa-phone"></i> +233 599 120 927</div>
+              </div>
+            </div>
+
+            <!-- Direct Instant Contact Action Buttons -->
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem;">
+              <a href="https://wa.me/233599120927" target="_blank" id="pdetail-wa-btn" class="btn btn-gold" style="width: 100%; text-align: center;">
+                <i class="fa-brands fa-whatsapp"></i> Inquire via WhatsApp
+              </a>
+              <a href="tel:+233599120927" class="btn btn-outline" style="width: 100%; text-align: center;">
+                <i class="fa-solid fa-phone"></i> Direct Telephone: +233 599 120 927
+              </a>
+            </div>
+
+            <h4 style="font-size: 1.1rem; margin-bottom: 1rem;"><i class="fa-regular fa-calendar-check" style="color: var(--accent);"></i> Book a Confidential Showing</h4>
+            
+            <form data-ajax-notify="Thank you! Vincent Somuah's private office will reach out within 2 hours to confirm your private viewing.">
+              <div class="form-group">
+                <label class="form-label">Your Full Name</label>
+                <input type="text" class="form-control" placeholder="Sir / Lady / Full Name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" placeholder="name@domain.com" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Direct Phone</label>
+                <input type="tel" class="form-control" placeholder="+233 599 120 927" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Preferred Date & Time</label>
+                <input type="datetime-local" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Special Inquiries / NDA Required</label>
+                <textarea class="form-control" placeholder="Provide any specific access requirements, security details, or proof-of-funds note..." style="min-height: 80px;"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                <i class="fa-regular fa-calendar-check"></i> Request Confidential Showing
+              </button>
+            </form>
+
+            <div style="border-top: 1px solid var(--border-light); margin-top: 1.5rem; padding-top: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem;">
+              <a href="#" class="btn btn-outline" style="width: 100%; font-size: 0.88rem;" onclick="window.print(); return false;">
+                <i class="fa-solid fa-print"></i> Print Property Dossier
+              </a>
+              <a href="enquiry.html" class="btn btn-outline" style="width: 100%; font-size: 0.88rem;">
+                <i class="fa-solid fa-share-nodes"></i> Request Off-Market Comps
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Similar Properties Carousel/Grid -->
+      <div id="pdetail-similar-root" style="margin-top: 4rem;">
+        <!-- Rendered by js/property-features.js -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-top">
+      <div class="grid grid-4">
+        <!-- Col 1 -->
+        <div>
+          <div class="logo footer-logo">
+            <div class="logo-icon"><i class="fa-solid fa-building-shield"></i></div>
+            <div class="logo-text">
+              <span class="logo-title">VAS</span>
+              <span class="logo-subtitle">ESTATES LUXURY</span>
+            </div>
+          </div>
+          <p class="footer-desc">
+            VAS Estates Luxury Real Estate is the premier international brokerage headquartered in Ghana, specializing in private off-market estates, institutional transactions, and confidential diaspora acquisitions.
+          </p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://wa.me/233599120927" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div>
+          <h4 class="footer-widget-title">Quick Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="about.html"><i class="fa-solid fa-angle-right"></i> About Our Firm</a></li>
+            <li><a href="properties.html"><i class="fa-solid fa-angle-right"></i> Featured Listings</a></li>
+            <li><a href="services.html"><i class="fa-solid fa-angle-right"></i> Bespoke Services</a></li>
+            <li><a href="agents.html"><i class="fa-solid fa-angle-right"></i> Advisory Council</a></li>
+            <li><a href="gallery.html"><i class="fa-solid fa-angle-right"></i> Visual Gallery</a></li>
+            <li><a href="faq.html"><i class="fa-solid fa-angle-right"></i> Investor FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3 -->
+        <div>
+          <h4 class="footer-widget-title">Asset Classes</h4>
+          <ul class="footer-links">
+            <li><a href="houses.html"><i class="fa-solid fa-angle-right"></i> Luxury Houses & Villas</a></li>
+            <li><a href="apartments.html"><i class="fa-solid fa-angle-right"></i> Penthouses & Condos</a></li>
+            <li><a href="land.html"><i class="fa-solid fa-angle-right"></i> Prime Plots & Acreage</a></li>
+            <li><a href="commercial.html"><i class="fa-solid fa-angle-right"></i> Commercial Assets</a></li>
+            <li><a href="rent.html"><i class="fa-solid fa-angle-right"></i> Residences for Lease</a></li>
+            <li><a href="sale.html"><i class="fa-solid fa-angle-right"></i> Properties for Sale</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Global Desk & Contacts -->
+        <div>
+          <h4 class="footer-widget-title">Headquarters Desk</h4>
+          <p class="footer-desc" style="margin-bottom: 0.5rem;">
+            <i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> Airport Residential Area, Accra, Ghana
+          </p>
+          <p class="footer-desc" style="margin-bottom: 0.5rem;">
+            <i class="fa-solid fa-phone" style="color: var(--accent);"></i> <a href="tel:+233599120927" style="color: inherit;">+233 599 120 927</a>
+          </p>
+          <p class="footer-desc" style="margin-bottom: 1rem;">
+            <i class="fa-solid fa-envelope" style="color: var(--accent);"></i> <a href="mailto:somuahvincent18@gmail.com" style="color: inherit;">somuahvincent18@gmail.com</a>
+          </p>
+          <a href="https://wa.me/233599120927" target="_blank" class="btn btn-gold btn-sm" style="width: 100%; text-align: center;">
+            <i class="fa-brands fa-whatsapp"></i> Chat with Vincent Somuah
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <div>
+          &copy; 2026 VAS Estates Luxury Real Estate. All rights reserved. Principal Broker: Vincent Somuah.
+        </div>
+        <div class="footer-legal-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="contact.html">Office Locations</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="js/properties-data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/property-features.js"></script>
+</body>
+</html>

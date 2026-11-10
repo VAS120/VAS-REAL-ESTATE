@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Private Membership | VAS Estates Luxury Real Estate</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .auth-wrapper {
+      min-height: calc(100vh - 160px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1.5rem;
+      background: linear-gradient(135deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.95) 100%),
+                  url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    }
+    .auth-card {
+      background: white;
+      width: 100%;
+      max-width: 540px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-xl);
+      padding: 2.75rem;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="topbar">
+    <div class="container topbar-content">
+      <div class="topbar-left">
+        <span class="topbar-item"><i class="fa-solid fa-location-dot"></i> Airport Residential Area, Accra, Ghana</span>
+        <span class="topbar-item"><i class="fa-solid fa-phone"></i> +233 599 120 927</span>
+        <span class="topbar-item"><i class="fa-solid fa-envelope"></i> somuahvincent18@gmail.com</span>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-socials">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://wa.me/233599120927" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <div class="topbar-item">
+          <a href="login.html"><i class="fa-regular fa-user"></i> Client Portal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-building-shield"></i></div>
+        <div class="logo-text"><span class="logo-title">VAS</span><span class="logo-subtitle">ESTATES LUXURY</span></div>
+      </a>
+
+      <nav class="nav-menu">
+        <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
+        <div class="nav-item"><a href="about.html" class="nav-link">About Us</a></div>
+        <div class="nav-item"><a href="properties.html" class="nav-link">Properties</a></div>
+        <div class="nav-item"><a href="contact.html" class="nav-link">Contact</a></div>
+      </nav>
+
+      <div class="header-actions">
+        <a href="properties.html" class="header-fav-btn" title="Saved Properties">
+          <i class="fa-regular fa-heart"></i>
+          <span class="header-fav-count">0</span>
+        </a>
+        <a href="login.html" class="btn btn-outline btn-sm">Member Sign In</a>
+        <a href="register.html" class="btn btn-gold btn-sm"><i class="fa-solid fa-user-plus"></i> Join Network</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Register Content Section -->
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <div class="logo-icon" style="margin: 0 auto 1rem; width: 50px; height: 50px; font-size: 1.6rem;"><i class="fa-solid fa-building-shield"></i></div>
+        <h2 style="font-size: 1.85rem; margin-bottom: 0.25rem;">Private Client Membership</h2>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Gain access to unlisted off-market portfolios and transaction vaults</p>
+      </div>
+
+      <form data-ajax-notify="Thank you. Your membership request has been submitted for fiduciary verification.">
+        
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label class="form-label">Full Name & Honorific</label>
+            <input type="text" class="form-control" placeholder="Lord / Sir / Full Name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Membership Category</label>
+            <select class="form-control" required>
+              <option value="buyer">UHNW Private Buyer / Investor</option>
+              <option value="owner">Luxury Property Owner / Seller</option>
+              <option value="family-office">Family Office Representative</option>
+              <option value="broker">Licensed Partner Broker</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label class="form-label">Primary Email</label>
+            <input type="email" class="form-control" placeholder="name@domain.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Direct Phone / Signal</label>
+            <input type="tel" class="form-control" placeholder="+1 (555) 000-0000" required>
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label class="form-label">Create Password</label>
+            <input type="password" class="form-control" placeholder="••••••••••••" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" placeholder="••••••••••••" required>
+          </div>
+        </div>
+
+        <div style="margin: 1.25rem 0 1.5rem; font-size: 0.85rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.5rem;">
+          <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;">
+            <input type="checkbox" required style="margin-top: 0.2rem;">
+            <span>I agree to the <a href="terms.html" style="color: var(--accent); font-weight: 600;">Terms of Service</a> and bilateral non-disclosure protocols.</span>
+          </label>
+          <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;">
+            <input type="checkbox" checked style="margin-top: 0.2rem;">
+            <span>Subscribe to private quarterly luxury market intelligence reports.</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-gold btn-lg" style="width: 100%; margin-bottom: 1.25rem;">
+          <i class="fa-solid fa-shield-check"></i> Register for Confidential Access
+        </button>
+
+        <div style="text-align: center; font-size: 0.9rem; color: var(--text-muted);">
+          Already possess verified credentials? <a href="login.html" style="color: var(--accent); font-weight: 700;">Sign in to Client Portal</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+    <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-top">
+      <div class="grid grid-4">
+        <!-- Col 1 -->
+        <div>
+          <div class="logo footer-logo">
+            <div class="logo-icon"><i class="fa-solid fa-building-shield"></i></div>
+            <div class="logo-text">
+              <span class="logo-title">VAS</span>
+              <span class="logo-subtitle">ESTATES LUXURY</span>
+            </div>
+          </div>
+          <p class="footer-desc">
+            VAS Estates Luxury Real Estate is the premier international brokerage headquartered in Ghana, specializing in private off-market estates, institutional transactions, and confidential diaspora acquisitions.
+          </p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://wa.me/233599120927" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div>
+          <h4 class="footer-widget-title">Quick Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="about.html"><i class="fa-solid fa-angle-right"></i> About Our Firm</a></li>
+            <li><a href="properties.html"><i class="fa-solid fa-angle-right"></i> Featured Listings</a></li>
+            <li><a href="services.html"><i class="fa-solid fa-angle-right"></i> Bespoke Services</a></li>
+            <li><a href="agents.html"><i class="fa-solid fa-angle-right"></i> Advisory Council</a></li>
+            <li><a href="gallery.html"><i class="fa-solid fa-angle-right"></i> Visual Gallery</a></li>
+            <li><a href="faq.html"><i class="fa-solid fa-angle-right"></i> Investor FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3 -->
+        <div>
+          <h4 class="footer-widget-title">Asset Classes</h4>
+          <ul class="footer-links">
+            <li><a href="houses.html"><i class="fa-solid fa-angle-right"></i> Luxury Houses & Villas</a></li>
+            <li><a href="apartments.html"><i class="fa-solid fa-angle-right"></i> Penthouses & Condos</a></li>
+            <li><a href="land.html"><i class="fa-solid fa-angle-right"></i> Prime Plots & Acreage</a></li>
+            <li><a href="commercial.html"><i class="fa-solid fa-angle-right"></i> Commercial Assets</a></li>
+            <li><a href="rent.html"><i class="fa-solid fa-angle-right"></i> Residences for Lease</a></li>
+            <li><a href="sale.html"><i class="fa-solid fa-angle-right"></i> Properties for Sale</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Global Desk & Contacts -->
+        <div>
+          <h4 class="footer-widget-title">Headquarters Desk</h4>
+          <p class="footer-desc" style="margin-bottom: 0.5rem;">
+            <i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> Airport Residential Area, Accra, Ghana
+          </p>
+          <p class="footer-desc" style="margin-bottom: 0.5rem;">
+            <i class="fa-solid fa-phone" style="color: var(--accent);"></i> <a href="tel:+233599120927" style="color: inherit;">+233 599 120 927</a>
+          </p>
+          <p class="footer-desc" style="margin-bottom: 1rem;">
+            <i class="fa-solid fa-envelope" style="color: var(--accent);"></i> <a href="mailto:somuahvincent18@gmail.com" style="color: inherit;">somuahvincent18@gmail.com</a>
+          </p>
+          <a href="https://wa.me/233599120927" target="_blank" class="btn btn-gold btn-sm" style="width: 100%; text-align: center;">
+            <i class="fa-brands fa-whatsapp"></i> Chat with Vincent Somuah
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <div>
+          &copy; 2026 VAS Estates Luxury Real Estate. All rights reserved. Principal Broker: Vincent Somuah.
+        </div>
+        <div class="footer-legal-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="contact.html">Office Locations</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Executive Property Management Dashboard | VAS Estates Luxury Real Estate</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-layout">
+
+  <!-- Admin Top Navigation Bar -->
+  <header class="admin-topbar">
+    <div style="display: flex; align-items: center; gap: 1.5rem;">
+      <a href="index.html" class="logo" style="gap: 0.6rem;">
+        <div class="logo-icon"><i class="fa-solid fa-building-shield"></i></div>
+        <div class="logo-text">
+          <span class="logo-title" style="color: white;">VAS</span>
+          <span class="logo-subtitle" style="color: var(--accent);">ESTATES LUXURY</span>
+        </div>
+      </a>
+      <span class="admin-header-badge">Administrative Console</span>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <a href="properties.html" target="_blank" class="btn btn-outline-white btn-sm">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> View Live Public Site
+      </a>
+      <button id="admin-btn-reset-defaults" class="btn btn-outline-white btn-sm" style="font-size: 0.8rem;" title="Reset demo properties">
+        <i class="fa-solid fa-rotate-left"></i> Reset Defaults
+      </button>
+      <div style="display: flex; align-items: center; gap: 0.75rem; border-left: 1px solid rgba(255,255,255,0.2); padding-left: 1rem;">
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=100&q=80" alt="Vincent Somuah" style="width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--accent); object-fit: cover;">
+        <span style="font-size: 0.88rem; font-weight: 600;">Vincent Somuah</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Admin Content Container -->
+  <main class="container" style="padding-top: 2.5rem; padding-bottom: 4rem; flex-grow: 1;">
+    
+    <!-- Top Welcome & Actions Bar -->
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h1 style="font-size: 2rem; margin-bottom: 0.25rem;">Portfolio Management & Specifications</h1>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Manage verified dimensions, high-resolution interior/exterior photography, GPS coordinates, and availability status.</p>
+      </div>
+      <div>
+        <button id="btn-open-create-modal" class="btn btn-gold btn-lg">
+          <i class="fa-solid fa-plus"></i> Add New Luxury Property
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats Counters Grid -->
+    <div class="admin-stats-grid">
+      <div class="admin-stat-card">
+        <div class="admin-stat-icon"><i class="fa-solid fa-gem"></i></div>
+        <div>
+          <div style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">Total Portfolio</div>
+          <div id="stat-total-props" style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 700; color: var(--primary);">0</div>
+        </div>
+      </div>
+
+      <div class="admin-stat-card">
+        <div class="admin-stat-icon" style="background: #ECFDF5; color: #059669;"><i class="fa-solid fa-door-open"></i></div>
+        <div>
+          <div style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">Available Assets</div>
+          <div id="stat-available-props" style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 700; color: #059669;">0</div>
+        </div>
+      </div>
+
+      <div class="admin-stat-card">
+        <div class="admin-stat-icon" style="background: #FFFBEB; color: #D97706;"><i class="fa-solid fa-handshake"></i></div>
+        <div>
+          <div style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">Under Offer / Escrow</div>
+          <div id="stat-underoffer-props" style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 700; color: #D97706;">0</div>
+        </div>
+      </div>
+
+      <div class="admin-stat-card">
+        <div class="admin-stat-icon" style="background: #EFF6FF; color: #2563EB;"><i class="fa-solid fa-vault"></i></div>
+        <div>
+          <div style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">Portfolio Capital Value</div>
+          <div id="stat-total-value" style="font-family: var(--font-heading); font-size: 1.65rem; font-weight: 700; color: var(--primary);">$0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Property Table Wrapper -->
+    <div class="admin-table-container">
+      <div class="admin-table-header">
+        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <h3 style="margin-bottom: 0; font-size: 1.3rem;">Active Real Estate Inventory</h3>
+          <div style="position: relative; width: 280px;">
+            <input type="text" id="admin-search-input" class="form-control" placeholder="Search title, suburb, ref..." style="padding-left: 2.2rem; font-size: 0.85rem;">
+            <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 0.8rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.85rem;"></i>
+          </div>
+          <select id="admin-status-filter" class="form-control" style="width: 160px; font-size: 0.85rem;">
+            <option value="all">All Statuses</option>
+            <option value="available">Available</option>
+            <option value="under-offer">Under Offer</option>
+            <option value="sold">Sold</option>
+            <option value="rented">Rented</option>
+          </select>
+        </div>
+
+        <div>
+          <span id="admin-showing-count" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Showing 0 properties</span>
+        </div>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="admin-property-table">
+          <thead>
+            <tr>
+              <th>Property Details</th>
+              <th>Category & Purpose</th>
+              <th>Dimensions & Specs</th>
+              <th>Location & GPS</th>
+              <th>Listing Price</th>
+              <th>Status</th>
+              <th style="text-align: right;">Administrative Actions</th>
+            </tr>
+          </thead>
+          <tbody id="admin-properties-tbody">
+            <!-- Dynamic rows rendered via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Add / Edit Property Modal -->
+  <div class="admin-modal-overlay" id="admin-property-modal">
+    <div class="admin-modal-card">
+      <div class="admin-modal-header">
+        <h3 id="modal-title" style="margin-bottom: 0; color: white;"><i class="fa-solid fa-pen-to-square" style="color: var(--accent);"></i> Add Luxury Property</h3>
+        <button id="modal-close-btn" style="background: transparent; border: none; color: white; font-size: 1.5rem; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="admin-property-form" class="admin-modal-body">
+        <input type="hidden" id="form-prop-id" value="">
+
+        <!-- SECTION 1: Identity & Pricing -->
+        <div class="admin-form-section">
+          <h4><i class="fa-solid fa-tag" style="color: var(--accent);"></i> Basic Identity & Valuation</h4>
+          <div class="grid grid-3">
+            <div class="form-group">
+              <label class="form-label">Property Title *</label>
+              <input type="text" id="form-title" class="form-control" placeholder="e.g. The Bellagio Hillside Sanctuary" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Reference ID</label>
+              <input type="text" id="form-ref" class="form-control" placeholder="e.g. #VAS-9842">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Property Category *</label>
+              <select id="form-type" class="form-control" required>
+                <option value="houses">Luxury House / Villa</option>
+                <option value="apartments">Penthouse / Apartment</option>
+                <option value="commercial">Commercial / Office</option>
+                <option value="land">Development Land / Plot</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-3">
+            <div class="form-group">
+              <label class="form-label">Purpose *</label>
+              <select id="form-purpose" class="form-control" required>
+                <option value="sale">For Sale (Acquisition)</option>
+                <option value="rent">For Rent / Lease</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Price in USD ($) *</label>
+              <input type="number" id="form-price" class="form-control" placeholder="8950000" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Period / Subtitle</label>
+              <input type="text" id="form-period" class="form-control" placeholder="Leave empty for Sale, or '/ mo' for Rent">
+            </div>
+          </div>
+
+          <div class="grid grid-2">
+            <div class="form-group">
+              <label class="form-label">Marketing Badge</label>
+              <input type="text" id="form-badge" class="form-control" placeholder="e.g. Featured Mandate, Prime Asset">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Availability Status</label>
+              <select id="form-status" class="form-control">
+                <option value="available">Available</option>
+                <option value="under-offer">Under Offer / In Escrow</option>
+                <option value="sold">Sold</option>
+                <option value="rented">Rented</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: Dimensions & Verified Measurements -->
+        <div class="admin-form-section">
+          <h4><i class="fa-solid fa-ruler-combined" style="color: var(--accent);"></i> Verified Dimensions & Measurements</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Only enter surveyor-verified measurements supplied by engineering documentation or land title certificates.
+          </p>
+
+          <div class="grid grid-4">
+            <div class="form-group">
+              <label class="form-label">Total Land Size (m²) *</label>
+              <input type="number" id="form-land-m2" class="form-control" placeholder="1820" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Land Size (Acres)</label>
+              <input type="number" step="0.01" id="form-land-acres" class="form-control" placeholder="0.45">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Building Size (m²)</label>
+              <input type="number" id="form-bldg-m2" class="form-control" placeholder="855">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Building Size (sqft)</label>
+              <input type="number" id="form-bldg-sqft" class="form-control" placeholder="9200">
+            </div>
+          </div>
+
+          <div class="grid grid-4">
+            <div class="form-group">
+              <label class="form-label">Land Length (Meters)</label>
+              <input type="number" step="0.1" id="form-land-len" class="form-control" placeholder="52">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Land Width (Meters)</label>
+              <input type="number" step="0.1" id="form-land-wid" class="form-control" placeholder="35">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Building Length (m)</label>
+              <input type="number" step="0.1" id="form-bldg-len" class="form-control" placeholder="32">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Building Width (m)</label>
+              <input type="number" step="0.1" id="form-bldg-wid" class="form-control" placeholder="26.7">
+            </div>
+          </div>
+
+          <div class="grid grid-4">
+            <div class="form-group">
+              <label class="form-label">Bedrooms</label>
+              <input type="number" id="form-beds" class="form-control" placeholder="6">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bathrooms</label>
+              <input type="number" step="0.5" id="form-baths" class="form-control" placeholder="8">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Living Rooms / Salons</label>
+              <input type="number" id="form-livings" class="form-control" placeholder="3">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Number of Floors</label>
+              <input type="number" id="form-floors" class="form-control" placeholder="3">
+            </div>
+          </div>
+
+          <div class="grid grid-2">
+            <div class="form-group">
+              <label class="form-label">Parking Capacity (Vehicles)</label>
+              <input type="number" id="form-parking" class="form-control" placeholder="6">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Garden / Outdoor Grounds Area (m²)</label>
+              <input type="number" id="form-garden-m2" class="form-control" placeholder="780">
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: Google Maps Coordinates & Location -->
+        <div class="admin-form-section">
+          <h4><i class="fa-solid fa-map-location-dot" style="color: var(--accent);"></i> Location & Google Maps Geolocation</h4>
+          
+          <div class="grid grid-3">
+            <div class="form-group">
+              <label class="form-label">Street Address *</label>
+              <input type="text" id="form-address" class="form-control" placeholder="e.g. 14 The Diplomatic Ridge, Cantonments" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Suburb / Area *</label>
+              <input type="text" id="form-suburb" class="form-control" placeholder="e.g. Cantonments" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">City *</label>
+              <input type="text" id="form-city" class="form-control" placeholder="e.g. Accra" required>
+            </div>
+          </div>
+
+          <div class="grid grid-3">
+            <div class="form-group">
+              <label class="form-label">Region / State</label>
+              <input type="text" id="form-region" class="form-control" placeholder="e.g. Greater Accra">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Country</label>
+              <input type="text" id="form-country" class="form-control" placeholder="e.g. Ghana">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Approximate Location</label>
+              <select id="form-approx" class="form-control">
+                <option value="false">Exact Address Public (Standard)</option>
+                <option value="true">Approximate Suburb Pin (High Discretion)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-2">
+            <div class="form-group">
+              <label class="form-label">Latitude (Coordinate) *</label>
+              <input type="number" step="0.000001" id="form-lat" class="form-control" placeholder="5.580200" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Longitude (Coordinate) *</label>
+              <input type="number" step="0.000001" id="form-lng" class="form-control" placeholder="-0.176400" required>
+            </div>
+          </div>
+
+          <!-- Interactive Click-to-Pick Map -->
+          <div style="margin-top: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">
+                <i class="fa-solid fa-crosshairs"></i> Click on the Map to Set Coordinates:
+              </span>
+              <span id="map-picked-coords" style="font-size: 0.82rem; color: var(--accent); font-weight: 600;">Click anywhere on map</span>
+            </div>
+            <div id="admin-picker-map" style="height: 240px; border-radius: 4px; border: 1px solid var(--border-light); background: #eee;"></div>
+          </div>
+        </div>
+
+        <!-- SECTION 4: Multi-Image Photography Manager -->
+        <div class="admin-form-section">
+          <h4><i class="fa-solid fa-images" style="color: var(--accent);"></i> Multi-Image Photography Gallery</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Add multiple high-resolution photos of the exterior, interior, bedrooms, living rooms, kitchens, bathrooms, parking, gardens, and surrounding environment.
+          </p>
+
+          <div style="background: var(--bg-surface); padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--border-light); margin-bottom: 1rem;">
+            <div class="grid grid-3">
+              <div class="form-group">
+                <label class="form-label">Image URL or Local Path</label>
+                <input type="text" id="new-img-url" class="form-control" placeholder="https://images.unsplash.com/...">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Category / Area</label>
+                <select id="new-img-cat" class="form-control">
+                  <option value="Exterior">Exterior Façade</option>
+                  <option value="Interior">Living Room / Salon</option>
+                  <option value="Interior">Gourmet Kitchen</option>
+                  <option value="Interior">Master Bedroom Suite</option>
+                  <option value="Interior">Bathroom / Spa</option>
+                  <option value="Exterior">Swimming Pool & Terrace</option>
+                  <option value="Exterior">Garden / Grounds</option>
+                  <option value="Exterior">Parking / Motor Court</option>
+                  <option value="Floor Plan">Architectural Floor Plan</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Caption / Description</label>
+                <div style="display: flex; gap: 0.5rem;">
+                  <input type="text" id="new-img-caption" class="form-control" placeholder="e.g. Grand Salon with Marble Flooring">
+                  <button type="button" id="btn-add-image" class="btn btn-gold" style="white-space: nowrap;"><i class="fa-solid fa-plus"></i> Add</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Existing Images List -->
+          <div id="admin-images-container" class="admin-image-manager-list">
+            <!-- Dynamic image items -->
+          </div>
+        </div>
+
+        <!-- SECTION 5: Description & Amenities -->
+        <div class="admin-form-section">
+          <h4><i class="fa-solid fa-align-left" style="color: var(--accent);"></i> Architectural Narrative & Amenities</h4>
+          
+          <div class="form-group">
+            <label class="form-label">Property Description *</label>
+            <textarea id="form-description" class="form-control" rows="4" placeholder="Comprehensive architectural description, structural specifications, and title heritage..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Amenities & Features (Comma separated)</label>
+            <input type="text" id="form-amenities" class="form-control" placeholder="Infinity Pool, Full Solar + Generator, Biometric Security, Wine Vault, Staff Quarters">
+          </div>
+        </div>
+
+        <!-- Modal Submit Actions -->
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; padding-top: 1rem;">
+          <button type="button" id="btn-cancel-modal" class="btn btn-outline">Cancel</button>
+          <button type="submit" class="btn btn-gold btn-lg"><i class="fa-solid fa-floppy-disk"></i> Save Property Listing</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="js/properties-data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    /**
+     * ADMINISTRATOR DASHBOARD JAVASCRIPT LOGIC
+     */
+    document.addEventListener("DOMContentLoaded", () => {
+      let currentEditImages = [];
+      let pickerMap = null;
+      let pickerMarker = null;
+
+      const tbody = document.getElementById("admin-properties-tbody");
+      const searchInput = document.getElementById("admin-search-input");
+      const statusFilter = document.getElementById("admin-status-filter");
+      const modal = document.getElementById("admin-property-modal");
+      const form = document.getElementById("admin-property-form");
+      const openCreateBtn = document.getElementById("btn-open-create-modal");
+      const closeBtn = document.getElementById("modal-close-btn");
+      const cancelBtn = document.getElementById("btn-cancel-modal");
+      const resetBtn = document.getElementById("admin-btn-reset-defaults");
+
+      const statTotal = document.getElementById("stat-total-props");
+      const statAvail = document.getElementById("stat-available-props");
+      const statOffer = document.getElementById("stat-underoffer-props");
+      const statVal = document.getElementById("stat-total-value");
+      const showingCount = document.getElementById("admin-showing-count");
+
+      function loadAdminTable() {
+        const properties = window.PropertyStore ? window.PropertyStore.getAll() : [];
+        const query = (searchInput?.value || "").toLowerCase().trim();
+        const stat = statusFilter?.value || "all";
+
+        // Update top metrics
+        if (statTotal) statTotal.textContent = properties.length;
+        if (statAvail) statAvail.textContent = properties.filter(p => p.status === "available").length;
+        if (statOffer) statOffer.textContent = properties.filter(p => p.status === "under-offer").length;
+        if (statVal) {
+          const totalVal = properties.reduce((acc, p) => acc + (p.priceUSD || 0), 0);
+          statVal.textContent = "$" + (totalVal >= 1000000 ? (totalVal / 1000000).toFixed(1) + "M" : totalVal.toLocaleString());
+        }
+
+        let filtered = properties;
+        if (query) {
+          filtered = filtered.filter(p =>
+            p.title.toLowerCase().includes(query) ||
+            p.location.suburb.toLowerCase().includes(query) ||
+            p.location.city.toLowerCase().includes(query) ||
+            (p.ref || "").toLowerCase().includes(query)
+          );
+        }
+        if (stat !== "all") {
+          filtered = filtered.filter(p => p.status === stat);
+        }
+
+        if (showingCount) showingCount.textContent = `Showing ${filtered.length} of ${properties.length} properties`;
+
+        if (!tbody) return;
+
+        if (filtered.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 3rem; color: var(--text-muted);">No matching properties found.</td></tr>`;
+          return;
+        }
+
+        tbody.innerHTML = filtered.map(p => `
+          <tr>
+            <td>
+              <div style="display: flex; align-items: center; gap: 1rem;">
+                <img src="${p.images && p.images[0] ? p.images[0].url : 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=150&q=80'}" class="admin-prop-thumb" alt="${p.title}">
+                <div>
+                  <a href="property-details.html?id=${p.id}" target="_blank" style="font-weight: 700; color: var(--primary); display: block; font-size: 0.95rem;">${p.title}</a>
+                  <span style="font-size: 0.75rem; color: var(--text-muted);">${p.ref || "#VAS-" + p.id.slice(-4)} • ${p.images ? p.images.length : 0} Photos</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span style="font-weight: 600; text-transform: capitalize;">${p.type}</span>
+              <div style="font-size: 0.78rem; color: var(--accent); font-weight: 700; text-transform: uppercase;">${p.purpose === "rent" ? "For Lease" : "For Sale"}</div>
+            </td>
+            <td>
+              <div><strong>${p.dimensions.totalLandAreaM2} m²</strong> land (${p.dimensions.totalLandAreaAcres} ac)</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">${p.dimensions.bedrooms} Beds • ${p.dimensions.bathrooms} Baths • ${p.dimensions.buildingAreaSqft} sqft</div>
+            </td>
+            <td>
+              <div><i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> ${p.location.suburb}, ${p.location.city}</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted); font-family: monospace;">${p.location.coordinates ? `${p.location.coordinates.lat.toFixed(4)}, ${p.location.coordinates.lng.toFixed(4)}` : "No GPS"}</div>
+            </td>
+            <td>
+              <span style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; color: var(--primary);">
+                $${p.priceUSD.toLocaleString()} ${p.period || ""}
+              </span>
+            </td>
+            <td>
+              <select class="admin-status-select admin-status-${p.status || 'available'}" data-id="${p.id}">
+                <option value="available" ${p.status === "available" ? "selected" : ""}>Available</option>
+                <option value="under-offer" ${p.status === "under-offer" ? "selected" : ""}>Under Offer</option>
+                <option value="sold" ${p.status === "sold" ? "selected" : ""}>Sold</option>
+                <option value="rented" ${p.status === "rented" ? "selected" : ""}>Rented</option>
+              </select>
+            </td>
+            <td style="text-align: right;">
+              <div style="display: inline-flex; gap: 0.4rem;">
+                <button class="btn btn-outline btn-sm btn-edit-prop" data-id="${p.id}" title="Edit property details & dimensions">
+                  <i class="fa-solid fa-pen"></i> Edit
+                </button>
+                <button class="btn btn-outline btn-sm btn-del-prop" data-id="${p.id}" title="Delete property" style="color: #E11D48; border-color: #FECDD3;">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `).join("");
+
+        // Status change listener
+        document.querySelectorAll(".admin-status-select").forEach(sel => {
+          sel.addEventListener("change", (e) => {
+            const id = sel.getAttribute("data-id");
+            const newStatus = e.target.value;
+            const prop = window.PropertyStore.getById(id);
+            if (prop) {
+              prop.status = newStatus;
+              window.PropertyStore.save(prop);
+              loadAdminTable();
+            }
+          });
+        });
+
+        // Edit listener
+        document.querySelectorAll(".btn-edit-prop").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-id");
+            openEditModal(id);
+          });
+        });
+
+        // Delete listener
+        document.querySelectorAll(".btn-del-prop").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-id");
+            if (confirm("Are you sure you want to permanently delete this property listing?")) {
+              window.PropertyStore.delete(id);
+              loadAdminTable();
+            }
+          });
+        });
+      }
+
+      function openEditModal(propId = null) {
+        form.reset();
+        currentEditImages = [];
+
+        if (propId) {
+          document.getElementById("modal-title").innerHTML = `<i class="fa-solid fa-pen-to-square" style="color: var(--accent);"></i> Edit Property Specifications`;
+          const p = window.PropertyStore.getById(propId);
+          if (p) {
+            document.getElementById("form-prop-id").value = p.id;
+            document.getElementById("form-title").value = p.title || "";
+            document.getElementById("form-ref").value = p.ref || "";
+            document.getElementById("form-type").value = p.type || "houses";
+            document.getElementById("form-purpose").value = p.purpose || "sale";
+            document.getElementById("form-price").value = p.priceUSD || 0;
+            document.getElementById("form-period").value = p.period || "";
+            document.getElementById("form-badge").value = p.badge || "";
+            document.getElementById("form-status").value = p.status || "available";
+
+            // Dimensions
+            const d = p.dimensions || {};
+            document.getElementById("form-land-m2").value = d.totalLandAreaM2 || 0;
+            document.getElementById("form-land-acres").value = d.totalLandAreaAcres || 0;
+            document.getElementById("form-bldg-m2").value = d.buildingAreaM2 || 0;
+            document.getElementById("form-bldg-sqft").value = d.buildingAreaSqft || 0;
+            document.getElementById("form-land-len").value = (d.landDimensions && d.landDimensions.lengthM) || 0;
+            document.getElementById("form-land-wid").value = (d.landDimensions && d.landDimensions.widthM) || 0;
+            document.getElementById("form-bldg-len").value = (d.buildingDimensions && d.buildingDimensions.lengthM) || 0;
+            document.getElementById("form-bldg-wid").value = (d.buildingDimensions && d.buildingDimensions.widthM) || 0;
+            document.getElementById("form-beds").value = d.bedrooms || 0;
+            document.getElementById("form-baths").value = d.bathrooms || 0;
+            document.getElementById("form-livings").value = d.livingRooms || 0;
+            document.getElementById("form-floors").value = d.floors || 0;
+            document.getElementById("form-parking").value = d.parkingCapacity || 0;
+            document.getElementById("form-garden-m2").value = d.gardenAreaM2 || 0;
+
+            // Location
+            const l = p.location || {};
+            document.getElementById("form-address").value = l.address || "";
+            document.getElementById("form-suburb").value = l.suburb || "";
+            document.getElementById("form-city").value = l.city || "";
+            document.getElementById("form-region").value = l.region || "";
+            document.getElementById("form-country").value = l.country || "";
+            document.getElementById("form-approx").value = l.approximate ? "true" : "false";
+
+            const coords = l.coordinates || { lat: 5.5802, lng: -0.1764 };
+            document.getElementById("form-lat").value = coords.lat;
+            document.getElementById("form-lng").value = coords.lng;
+
+            // Images
+            currentEditImages = Array.isArray(p.images) ? [...p.images] : [];
+
+            // Description & Amenities
+            document.getElementById("form-description").value = p.description || "";
+            document.getElementById("form-amenities").value = Array.isArray(p.amenities) ? p.amenities.join(", ") : "";
+          }
+        } else {
+          document.getElementById("modal-title").innerHTML = `<i class="fa-solid fa-plus" style="color: var(--accent);"></i> Add New Luxury Property`;
+          document.getElementById("form-prop-id").value = "";
+          document.getElementById("form-lat").value = 5.5802;
+          document.getElementById("form-lng").value = -0.1764;
+          currentEditImages = [
+            { url: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=80", category: "Exterior", caption: "Front Exterior Façade", isMain: true }
+          ];
+        }
+
+        renderImagesList();
+        modal.classList.add("active");
+
+        // Init/Update Picker Map
+        setTimeout(() => {
+          const lat = parseFloat(document.getElementById("form-lat").value) || 5.5802;
+          const lng = parseFloat(document.getElementById("form-lng").value) || -0.1764;
+          initPickerMap(lat, lng);
+        }, 200);
+      }
+
+      function initPickerMap(lat, lng) {
+        if (typeof L === "undefined") return;
+
+        if (!pickerMap) {
+          pickerMap = L.map("admin-picker-map").setView([lat, lng], 14);
+          L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+            maxZoom: 19
+          }).addTo(pickerMap);
+
+          pickerMap.on("click", (e) => {
+            const newLat = e.latlng.lat;
+            const newLng = e.latlng.lng;
+            document.getElementById("form-lat").value = newLat.toFixed(6);
+            document.getElementById("form-lng").value = newLng.toFixed(6);
+            document.getElementById("map-picked-coords").textContent = `Selected: ${newLat.toFixed(4)}, ${newLng.toFixed(4)}`;
+            if (pickerMarker) {
+              pickerMarker.setLatLng([newLat, newLng]);
+            } else {
+              pickerMarker = L.marker([newLat, newLng]).addTo(pickerMap);
+            }
+          });
+        } else {
+          pickerMap.invalidateSize();
+          pickerMap.setView([lat, lng], 14);
+        }
+
+        if (pickerMarker) {
+          pickerMarker.setLatLng([lat, lng]);
+        } else {
+          pickerMarker = L.marker([lat, lng]).addTo(pickerMap);
+        }
+      }
+
+      function renderImagesList() {
+        const cont = document.getElementById("admin-images-container");
+        if (!cont) return;
+
+        cont.innerHTML = currentEditImages.map((img, i) => `
+          <div class="admin-image-item">
+            <button type="button" class="admin-image-item-del" data-idx="${i}" title="Remove image">&times;</button>
+            <img src="${img.url}" alt="${img.caption || 'Photo'}">
+            <div class="admin-image-item-meta">
+              <strong style="display: block; color: var(--accent); font-size: 0.75rem;">${img.category || "Exterior"}</strong>
+              <span style="color: var(--text-muted); font-size: 0.72rem; overflow: hidden; text-overflow: ellipsis; display: block; white-space: nowrap;">${img.caption || 'No caption'}</span>
+              ${i === 0 ? '<span style="color: #059669; font-weight: 700; font-size: 0.7rem;">★ Primary Thumbnail</span>' : ''}
+            </div>
+          </div>
+        `).join("");
+
+        cont.querySelectorAll(".admin-image-item-del").forEach(b => {
+          b.addEventListener("click", () => {
+            const idx = parseInt(b.getAttribute("data-idx"));
+            currentEditImages.splice(idx, 1);
+            renderImagesList();
+          });
+        });
+      }
+
+      // Add image button inside modal
+      document.getElementById("btn-add-image")?.addEventListener("click", () => {
+        const urlInput = document.getElementById("new-img-url");
+        const catSelect = document.getElementById("new-img-cat");
+        const captionInput = document.getElementById("new-img-caption");
+
+        const url = (urlInput.value || "").trim();
+        if (!url) {
+          alert("Please enter a valid image URL");
+          return;
+        }
+
+        currentEditImages.push({
+          url: url,
+          category: catSelect.value,
+          caption: captionInput.value.trim() || `${catSelect.value} view`,
+          isMain: currentEditImages.length === 0
+        });
+
+        urlInput.value = "";
+        captionInput.value = "";
+        renderImagesList();
+      });
+
+      // Form Submit
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const id = document.getElementById("form-prop-id").value || "vas-prop-" + Date.now();
+        const existing = window.PropertyStore.getById(id) || {};
+
+        const updatedProperty = {
+          ...existing,
+          id: id,
+          ref: document.getElementById("form-ref").value.trim() || "#VAS-" + id.slice(-4),
+          title: document.getElementById("form-title").value.trim(),
+          type: document.getElementById("form-type").value,
+          typeLabel: document.getElementById("form-type").selectedOptions[0].text,
+          purpose: document.getElementById("form-purpose").value,
+          priceUSD: parseFloat(document.getElementById("form-price").value) || 0,
+          period: document.getElementById("form-period").value.trim(),
+          badge: document.getElementById("form-badge").value.trim(),
+          status: document.getElementById("form-status").value,
+          dimensions: {
+            totalLandAreaM2: parseFloat(document.getElementById("form-land-m2").value) || 0,
+            totalLandAreaAcres: parseFloat(document.getElementById("form-land-acres").value) || 0,
+            buildingAreaM2: parseFloat(document.getElementById("form-bldg-m2").value) || 0,
+            buildingAreaSqft: parseFloat(document.getElementById("form-bldg-sqft").value) || 0,
+            landDimensions: {
+              lengthM: parseFloat(document.getElementById("form-land-len").value) || 0,
+              widthM: parseFloat(document.getElementById("form-land-wid").value) || 0,
+              unit: "m"
+            },
+            buildingDimensions: {
+              lengthM: parseFloat(document.getElementById("form-bldg-len").value) || 0,
+              widthM: parseFloat(document.getElementById("form-bldg-wid").value) || 0,
+              unit: "m"
+            },
+            bedrooms: parseInt(document.getElementById("form-beds").value) || 0,
+            bathrooms: parseFloat(document.getElementById("form-baths").value) || 0,
+            livingRooms: parseInt(document.getElementById("form-livings").value) || 0,
+            floors: parseInt(document.getElementById("form-floors").value) || 1,
+            parkingCapacity: parseInt(document.getElementById("form-parking").value) || 0,
+            gardenAreaM2: parseFloat(document.getElementById("form-garden-m2").value) || 0
+          },
+          location: {
+            address: document.getElementById("form-address").value.trim(),
+            suburb: document.getElementById("form-suburb").value.trim(),
+            city: document.getElementById("form-city").value.trim(),
+            region: document.getElementById("form-region").value.trim(),
+            country: document.getElementById("form-country").value.trim(),
+            approximate: document.getElementById("form-approx").value === "true",
+            coordinates: {
+              lat: parseFloat(document.getElementById("form-lat").value) || 5.5802,
+              lng: parseFloat(document.getElementById("form-lng").value) || -0.1764
+            }
+          },
+          images: currentEditImages.length > 0 ? currentEditImages : [
+            { url: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=80", category: "Exterior", caption: "Front Exterior Elevation" }
+          ],
+          description: document.getElementById("form-description").value.trim(),
+          amenities: document.getElementById("form-amenities").value.split(",").map(a => a.trim()).filter(Boolean)
+        };
+
+        window.PropertyStore.save(updatedProperty);
+        modal.classList.remove("active");
+        loadAdminTable();
+        alert("Property saved successfully! Changes are live on the website.");
+      });
+
+      // Modal open/close listeners
+      openCreateBtn?.addEventListener("click", () => openEditModal(null));
+      closeBtn?.addEventListener("click", () => modal.classList.remove("active"));
+      cancelBtn?.addEventListener("click", () => modal.classList.remove("active"));
+      modal?.addEventListener("click", (e) => {
+        if (e.target === modal) modal.classList.remove("active");
+      });
+
+      // Filter & Search input listeners
+      searchInput?.addEventListener("input", loadAdminTable);
+      statusFilter?.addEventListener("change", loadAdminTable);
+
+      // Reset to defaults
+      resetBtn?.addEventListener("click", () => {
+        if (confirm("Reset all property data back to default high-spec demonstration portfolio?")) {
+          window.PropertyStore.resetToDefaults();
+          loadAdminTable();
+          alert("Default portfolio restored!");
+        }
+      });
+
+      // Initial table load
+      loadAdminTable();
+    });
+  </script>
+</body>
+</html>
+

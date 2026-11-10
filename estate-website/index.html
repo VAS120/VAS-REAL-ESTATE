@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VAS Estates Luxury Real Estate | Luxury Real Estate & Exclusive Properties</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+  <div class="topbar">
+    <div class="container topbar-content">
+      <div class="topbar-left">
+        <span class="topbar-item"><i class="fa-solid fa-location-dot"></i> Airport Residential Area, Accra, Ghana</span>
+        <span class="topbar-item"><i class="fa-solid fa-phone"></i> +233 599 120 927</span>
+        <span class="topbar-item"><i class="fa-solid fa-envelope"></i> somuahvincent18@gmail.com</span>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-socials">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://wa.me/233599120927" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <div class="topbar-item">
+          <a href="login.html"><i class="fa-regular fa-user"></i> Client Portal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-building-shield"></i></div>
+        <div class="logo-text">
+          <span class="logo-title">VAS</span>
+          <span class="logo-subtitle">ESTATES LUXURY</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <div class="nav-item"><a href="index.html" class="nav-link active">Home</a></div>
+        <div class="nav-item"><a href="about.html" class="nav-link">About Us</a></div>
+        
+        <!-- Properties Dropdown -->
+        <div class="nav-item">
+          <a href="properties.html" class="nav-link">
+            Properties <i class="fa-solid fa-angle-down" style="font-size: 0.75rem;"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="properties.html" class="dropdown-item"><i class="fa-solid fa-border-all"></i> All Properties</a>
+            <a href="houses.html" class="dropdown-item"><i class="fa-solid fa-house"></i> Luxury Houses & Villas</a>
+            <a href="apartments.html" class="dropdown-item"><i class="fa-solid fa-building"></i> Penthouses & Condos</a>
+            <a href="land.html" class="dropdown-item"><i class="fa-solid fa-mountain-sun"></i> Land & Plots</a>
+            <a href="commercial.html" class="dropdown-item"><i class="fa-solid fa-briefcase"></i> Commercial Assets</a>
+            <a href="rent.html" class="dropdown-item"><i class="fa-solid fa-key"></i> Properties for Rent</a>
+            <a href="sale.html" class="dropdown-item"><i class="fa-solid fa-tag"></i> Properties for Sale</a>
+          </div>
+        </div>
+
+        <!-- Pages Dropdown -->
+        <div class="nav-item">
+          <a href="#" class="nav-link">
+            Pages <i class="fa-solid fa-angle-down" style="font-size: 0.75rem;"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="services.html" class="dropdown-item"><i class="fa-solid fa-handshake"></i> Our Services</a>
+            <a href="agents.html" class="dropdown-item"><i class="fa-solid fa-users"></i> Meet Our Agents</a>
+            <a href="gallery.html" class="dropdown-item"><i class="fa-regular fa-image"></i> Architectural Gallery</a>
+            <a href="testimonials.html" class="dropdown-item"><i class="fa-solid fa-comment-dots"></i> Client Testimonials</a>
+            <a href="faq.html" class="dropdown-item"><i class="fa-regular fa-circle-question"></i> FAQ</a>
+            <a href="enquiry.html" class="dropdown-item"><i class="fa-regular fa-paper-plane"></i> Book a Private Tour</a>
+            <a href="admin.html" class="dropdown-item" style="border-top: 1px solid var(--border-light); color: var(--accent);"><i class="fa-solid fa-lock"></i> Admin Dashboard</a>
+          </div>
+        </div>
+
+        <div class="nav-item"><a href="blog.html" class="nav-link">Journal</a></div>
+        <div class="nav-item"><a href="contact.html" class="nav-link">Contact</a></div>
+      </nav>
+
+      <div class="header-actions">
+        <a href="properties.html" class="header-fav-btn" title="Saved Properties">
+          <i class="fa-regular fa-heart"></i>
+          <span class="header-fav-count">0</span>
+        </a>
+        <a href="enquiry.html" class="btn btn-gold btn-sm btn-post">
+          <i class="fa-solid fa-calendar-check"></i> Book Viewing
+        </a>
+        <button class="mobile-nav-toggle" aria-label="Toggle navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section with Tabbed Search -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-tagline">
+          <i class="fa-solid fa-award"></i> The Global Standard in Prime Real Estate
+        </div>
+        <h1 class="hero-title">Discover Extraordinary Living Across <span>Prime Horizons</span></h1>
+        <p class="hero-desc">
+          Browse vetted architectural masterpieces, private waterfront estates, and prestigious sky penthouses curated for discerning global clients.
+        </p>
+
+        <!-- Search Box -->
+        <div class="hero-search-box">
+          <div class="search-tabs">
+            <button class="search-tab-btn active" data-type="all">All Status</button>
+            <button class="search-tab-btn" data-type="sale">For Sale</button>
+            <button class="search-tab-btn" data-type="rent">For Rent</button>
+            <button class="search-tab-btn" data-type="commercial">Commercial</button>
+          </div>
+
+          <form action="properties.html" method="GET" class="search-form-grid">
+            <input type="hidden" name="purpose" id="search-purpose" value="all">
+
+            <div class="search-field">
+              <label><i class="fa-solid fa-location-crosshairs"></i> Location</label>
+              <div class="search-field-input">
+                <input type="text" placeholder="e.g., Accra, Airport Hills, Cantonments, East Legon, London">
+              </div>
+            </div>
+
+            <div class="search-field">
+              <label><i class="fa-solid fa-house-chimney"></i> Property Type</label>
+              <div class="search-field-input">
+                <select>
+                  <option value="">All Categories</option>
+                  <option value="houses">Modern Villa</option>
+                  <option value="apartments">Luxury Penthouse</option>
+                  <option value="commercial">Commercial Office</option>
+                  <option value="land">Development Land</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="search-field">
+              <label><i class="fa-solid fa-dollar-sign"></i> Price Range</label>
+              <div class="search-field-input">
+                <select>
+                  <option value="">Any Price</option>
+                  <option value="1">$500k - $1.5M</option>
+                  <option value="2">$1.5M - $5.0M</option>
+                  <option value="3">$5.0M - $15.0M</option>
+                  <option value="4">$15.0M+</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="search-field">
+              <label><i class="fa-solid fa-bed"></i> Bedrooms</label>
+              <div class="search-field-input">
+                <select>
+                  <option value="">Any</option>
+                  <option value="2">2+ Beds</option>
+                  <option value="3">3+ Beds</option>
+                  <option value="4">4+ Beds</option>
+                  <option value="5">5+ Beds</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="height: 48px; margin-top: 1.25rem;">
+              <i class="fa-solid fa-magnifying-glass"></i> Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Metric Counters Strip -->
+  <section class="section-sm" style="background-color: var(--primary); border-bottom: 1px solid rgba(255,255,255,0.08);">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3>$4.8B+</h3>
+          <p>Total Sales Volume</p>
+        </div>
+        <div class="stat-item">
+          <h3>1,420+</h3>
+          <p>Verified Premium Listings</p>
+        </div>
+        <div class="stat-item">
+          <h3>99.4%</h3>
+          <p>Client Satisfaction Rate</p>
+        </div>
+        <div class="stat-item">
+          <h3>34+</h3>
+          <p>International Real Estate Awards</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Properties Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Exclusive Listings</span>
+        <h2 class="section-title">Handpicked Architectural Marvels</h2>
+        <p class="section-desc">Each property in our portfolio undergoes a rigorous 140-point architectural and title audit to ensure unparalleled quality.</p>
+      </div>
+
+            <div class="grid grid-3">
+        <!-- Property Card 1: Cantonments -->
+        <article class="property-card" data-type="houses" data-price="8950000">
+          <div class="property-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80" alt="Cantonments Villa" loading="lazy">
+            <div class="property-badges">
+              <span class="badge badge-sale">For Sale</span>
+              <span class="badge badge-featured"><i class="fa-solid fa-star"></i> Featured</span>
+            </div>
+            <div class="property-actions-top">
+              <button class="card-action-btn card-fav-btn" data-id="prop-1" aria-label="Favorite property"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <div class="property-price-tag" data-base-price="8950000">$8,950,000</div>
+          </div>
+          <div class="property-content">
+            <div class="property-type">Diplomatic Hillside Villa</div>
+            <h3 class="property-title"><a href="property-details.html?id=vas-prop-1">The Bellagio Hillside Sanctuary</a></h3>
+            <div class="property-location"><i class="fa-solid fa-location-dot"></i> The Diplomatic Ridge, Cantonments, Accra, Ghana</div>
+            <div class="property-specs">
+              <span class="spec-item"><i class="fa-solid fa-bed"></i> 6 Beds</span>
+              <span class="spec-item"><i class="fa-solid fa-bath"></i> 8 Baths</span>
+              <span class="spec-item"><i class="fa-solid fa-ruler-combined"></i> 9,200 sqft</span>
+            </div>
+            <div class="property-footer">
+              <div class="property-agent-mini">
+                <img src="images/founder/vincent-somuah.jpg" alt="Vincent Somuah" style="object-position: top center;">
+                <span class="property-agent-name">Vincent Somuah</span>
+              </div>
+              <a href="property-details.html?id=vas-prop-1" class="btn btn-outline btn-sm">Explore <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Property Card 2: New York Penthouse -->
+        <article class="property-card" data-type="apartments" data-price="14500000">
+          <div class="property-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="The Sky Glass Penthouse" loading="lazy">
+            <div class="property-badges">
+              <span class="badge badge-sale">For Sale</span>
+              <span class="badge badge-hot"><i class="fa-solid fa-fire"></i> Hot Deal</span>
+            </div>
+            <div class="property-actions-top">
+              <button class="card-action-btn card-fav-btn" data-id="prop-2" aria-label="Favorite property"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <div class="property-price-tag" data-base-price="14500000">$14,500,000</div>
+          </div>
+          <div class="property-content">
+            <div class="property-type">Penthouse</div>
+            <h3 class="property-title"><a href="property-details.html?id=vas-prop-9">The Sky Penthouse at Billionaire Row</a></h3>
+            <div class="property-location"><i class="fa-solid fa-location-dot"></i> 432 Park Ave, New York, NY, USA</div>
+            <div class="property-specs">
+              <span class="spec-item"><i class="fa-solid fa-bed"></i> 4 Beds</span>
+              <span class="spec-item"><i class="fa-solid fa-bath"></i> 5 Baths</span>
+              <span class="spec-item"><i class="fa-solid fa-ruler-combined"></i> 6,850 sqft</span>
+            </div>
+            <div class="property-footer">
+              <div class="property-agent-mini">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&q=80" alt="Elena Rostova">
+                <span class="property-agent-name">Elena Rostova</span>
+              </div>
+              <a href="property-details.html?id=vas-prop-2" class="btn btn-outline btn-sm">Explore <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Property Card 3: Airport Residential Manor -->
+        <article class="property-card" data-type="houses" data-price="5800000">
+          <div class="property-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" alt="Airport Residential Manor" loading="lazy">
+            <div class="property-badges">
+              <span class="badge badge-sale">For Sale</span>
+              <span class="badge badge-featured">Prime Asset</span>
+            </div>
+            <div class="property-actions-top">
+              <button class="card-action-btn card-fav-btn" data-id="prop-3" aria-label="Favorite property"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <div class="property-price-tag" data-base-price="5800000">$5,800,000</div>
+          </div>
+          <div class="property-content">
+            <div class="property-type">Executive Manor</div>
+            <h3 class="property-title"><a href="property-details.html?id=vas-prop-2">Airport Residential Sovereign Manor</a></h3>
+            <div class="property-location"><i class="fa-solid fa-location-dot"></i> Airport Residential Area, Accra, Ghana</div>
+            <div class="property-specs">
+              <span class="spec-item"><i class="fa-solid fa-bed"></i> 5 Beds</span>
+              <span class="spec-item"><i class="fa-solid fa-bath"></i> 6 Baths</span>
+              <span class="spec-item"><i class="fa-solid fa-ruler-combined"></i> 7,800 sqft</span>
+            </div>
+            <div class="property-footer">
+              <div class="property-agent-mini">
+                <img src="images/founder/vincent-somuah.jpg" alt="Vincent Somuah" style="object-position: top center;">
+                <span class="property-agent-name">Vincent Somuah</span>
+              </div>
+              <a href="property-details.html?id=vas-prop-2" class="btn btn-outline btn-sm">Explore <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </article>
+      </div><div style="text-align: center; margin-top: 3.5rem;">
+        <a href="properties.html" class="btn btn-primary btn-lg">
+          View All Exclusive Listings <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Grid -->
+  <section class="section" style="background-color: var(--bg-surface);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Property Types</span>
+        <h2 class="section-title">Explore by Asset Class</h2>
+        <p class="section-desc">Tailored property categories designed to match your lifestyle and investment objectives.</p>
+      </div>
+
+      <div class="grid grid-4">
+        <!-- Category 1 -->
+        <a href="houses.html" class="category-card">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Houses & Villas">
+          <div class="category-overlay">
+            <div class="category-icon"><i class="fa-solid fa-house-laptop"></i></div>
+            <h3 class="category-title">Luxury Houses</h3>
+            <span class="category-count">148 Properties Available</span>
+          </div>
+        </a>
+
+        <!-- Category 2 -->
+        <a href="apartments.html" class="category-card">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" alt="Penthouses & Apartments">
+          <div class="category-overlay">
+            <div class="category-icon"><i class="fa-solid fa-building"></i></div>
+            <h3 class="category-title">Sky Condos</h3>
+            <span class="category-count">92 Properties Available</span>
+          </div>
+        </a>
+
+        <!-- Category 3 -->
+        <a href="land.html" class="category-card">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" alt="Land & Plots">
+          <div class="category-overlay">
+            <div class="category-icon"><i class="fa-solid fa-mountain-sun"></i></div>
+            <h3 class="category-title">Plots & Land</h3>
+            <span class="category-count">45 Lots Ready</span>
+          </div>
+        </a>
+
+        <!-- Category 4 -->
+        <a href="commercial.html" class="category-card">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Commercial Properties">
+          <div class="category-overlay">
+            <div class="category-icon"><i class="fa-solid fa-city"></i></div>
+            <h3 class="category-title">Commercial</h3>
+            <span class="category-count">36 High-Yield Assets</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">The VAS Advantage</span>
+        <h2 class="section-title">Why Elite Investors Trust VAS Estates Luxury Real Estate</h2>
+        <p class="section-desc">We redefine real estate advisory through discreet private placements and institutional-grade market acumen.</p>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="feature-box">
+          <div class="feature-icon-wrapper"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3 class="feature-title">Vetted Integrity & Discretion</h3>
+          <p>Every transaction is guarded with sovereign confidentiality agreements and bank-grade verification protocols.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon-wrapper"><i class="fa-solid fa-globe"></i></div>
+          <h3 class="feature-title">Private Off-Market Access</h3>
+          <p>Over 40% of our ultra-luxury transactions occur entirely off-market through our privileged global partner network.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon-wrapper"><i class="fa-solid fa-chess-rook"></i></div>
+          <h3 class="feature-title">Turnkey Wealth Advisory</h3>
+          <p>From cross-border tax structuration and escrow facilitation to architectural concierge, we guide every milestone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Experience Banner -->
+  <section class="section section-dark" style="background: linear-gradient(rgba(11, 15, 25, 0.88), rgba(11, 15, 25, 0.95)), url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1920&q=85') center/cover fixed;">
+    <div class="container" style="text-align: center;">
+      <span class="section-subtitle" style="color: var(--accent);">Architectural Storytelling</span>
+      <h2 style="font-size: 2.85rem; max-width: 750px; margin: 0 auto 1.5rem; color: white;">Experience 4K Cinematic Tours of Our Flagship Estates</h2>
+      <p style="max-width: 600px; margin: 0 auto 2.5rem; color: rgba(255,255,255,0.8);">Step inside world-class architectural designs through immersive digital walkthroughs before booking your private showing.</p>
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="gallery.html" class="btn btn-gold btn-lg"><i class="fa-solid fa-play"></i> Watch Video Gallery</a>
+        <a href="enquiry.html" class="btn btn-outline-white btn-lg"><i class="fa-regular fa-calendar-check"></i> Book Private Tour</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Agents Preview -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Our Advisory Council</span>
+        <h2 class="section-title">Meet Top Tier Brokers</h2>
+        <p class="section-desc">Seasoned real estate advisors with billions in collective closed transactions worldwide.</p>
+      </div>
+
+      <div class="grid grid-3">
+        <!-- Agent 1 -->
+        <div class="agent-card">
+          <div class="agent-photo-wrapper">
+            <img src="images/founder/vincent-somuah.jpg" alt="Vincent Somuah" style="object-position: top center;">
+            <div class="agent-social-overlay">
+              <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="mailto:somuahvincent18@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="agent-info">
+            <h3 class="agent-name"><a href="agent-details.html">Vincent Somuah</a></h3>
+            <div class="agent-role">Founder & Managing Broker</div>
+            <div class="agent-contact-stats">
+              <div><strong>$420M+</strong><br><span style="color: var(--text-muted); font-size: 0.75rem;">Volume</span></div>
+              <div><strong>14 Yrs</strong><br><span style="color: var(--text-muted); font-size: 0.75rem;">Experience</span></div>
+              <div><strong>Accra, Ghana</strong><br><span style="color: var(--text-muted); font-size: 0.75rem;">Region</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agent 2 -->
+        <div class="agent-card">
+          <div class="agent-photo-wrapper">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Elena Rostova">
+            <div class="agent-social-overlay">
+              <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="mailto:elena@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="agent-info">
+            <h3 class="agent-name"><a href="agent-details.html">Elena Rostova</a></h3>
+            <div class="agent-role">Senior Penthouse Specialist</div>
+            <div class="agent-contact-stats">
+              <div><strong>$310M+</strong><br><span style="color: var(--text-muted); font-size: 0.75rem;">Volume</span></div>
+              <div><strong>9 Yrs</strong><br><span style="color: var(--text-muted); font-size: 0.75rem;">Experience</span></div>
+              <div><strong>Manhattan</strong><br><span style="color: var(--text-muted); font-size: 0.75rem;">Region</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agent 3 -->
+        <div class="agent-card">
+          <div class="agent-photo-wrapper">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Julian Sterling">
+            <div class="agent-social-overlay">
+              <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="mailto:julian@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+            </div>
+          </div>
+          <div class="agent-info">
+            <h3 class="agent-name"><a href="agent-details.html">Julian Sterling</a></h3>
+            <div class="agent-role">Waterfront Acquisitions</div>
+            <div class="agent-contact-stats">
+              <div><strong>$280M+</strong><br><span style="color: var(--text-muted); font-size: 0.75rem;">Volume</span></div>
+              <div><strong>11 Yrs</strong><br><span style="color: var(--text-muted); font-size: 0.75rem;">Experience</span></div>
+              <div><strong>Miami & Palm Beach</strong><br><span style="color: var(--text-muted); font-size: 0.75rem;">Region</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Testimonials Preview -->
+  <section class="section" style="background-color: var(--bg-surface);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Client Reviews</span>
+        <h2 class="section-title">Endorsed by Global Connoisseurs</h2>
+        <p class="section-desc">What private equity leaders, family offices, and renowned homeowners say about partnering with VAS Estates Luxury Real Estate.</p>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="testimonial-card">
+          <i class="fa-solid fa-quote-right quote-icon"></i>
+          <div class="stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Vincent and the VAS team delivered an off-market Bel Air transaction with flawless discretion. Their market pricing accuracy saved us millions."</p>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Alexandra Croft">
+            <div>
+              <div class="author-name">Alexandra Croft</div>
+              <div class="author-role">Venture Partner, Horizon Capital</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <i class="fa-solid fa-quote-right quote-icon"></i>
+          <div class="stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Finding an authentic 7,000 sq ft penthouse in Tribeca seemed impossible until Elena brought us an unlisted masterpiece within 72 hours."</p>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="David Sterling">
+            <div>
+              <div class="author-name">David Sterling</div>
+              <div class="author-role">Founder, Sterling Media Group</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <i class="fa-solid fa-quote-right quote-icon"></i>
+          <div class="stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"The escrow and cross-border structuring support was second to none. VAS Estates Luxury Real Estate handles international acquisitions with seamless finesse."</p>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=120&q=80" alt="Claire DuPont">
+            <div>
+              <div class="author-name">Claire DuPont</div>
+              <div class="author-role">Family Office Trustee, Geneva</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Journal & Insights -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Market Intelligence</span>
+        <h2 class="section-title">The Real Estate Journal</h2>
+        <p class="section-desc">Analysis of luxury asset pricing, emerging architectural trends, and sovereign tax guidelines.</p>
+      </div>
+
+      <div class="grid grid-3">
+        <article class="blog-card">
+          <div class="blog-thumb">
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=600&q=80" alt="Market Report">
+            <span class="blog-tag">Market Trends</span>
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span><i class="fa-regular fa-calendar"></i> Oct 12, 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 5 min read</span>
+            </div>
+            <h3 class="blog-title"><a href="blog-details.html">Q3 Global Luxury Prime Residential Index & Forecast</a></h3>
+            <p class="blog-excerpt">Capital flows toward resilient coastal enclaves and ultra-prime high rises with sustainable wellness certifications.</p>
+            <a href="blog-details.html" style="font-weight: 700; color: var(--accent);">Read Analysis <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-thumb">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80" alt="Architecture">
+            <span class="blog-tag">Architecture</span>
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span><i class="fa-regular fa-calendar"></i> Sep 28, 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 7 min read</span>
+            </div>
+            <h3 class="blog-title"><a href="blog-details.html">Biophilic Design: When Modern Mansions Merge with Nature</a></h3>
+            <p class="blog-excerpt">How leading architects integrate water walls, subterranean courtyards, and native flora into ultra-luxury living spaces.</p>
+            <a href="blog-details.html" style="font-weight: 700; color: var(--accent);">Read Analysis <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-thumb">
+            <img src="https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=600&q=80" alt="Financing">
+            <span class="blog-tag">Investment</span>
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span><i class="fa-regular fa-calendar"></i> Sep 15, 2026</span>
+              <span><i class="fa-regular fa-clock"></i> 4 min read</span>
+            </div>
+            <h3 class="blog-title"><a href="blog-details.html">Tax Structuring and 1031 Exchanges for Ultra-High-Net-Worth Buyers</a></h3>
+            <p class="blog-excerpt">Essential frameworks for preserving capital and deferring liability when upgrading prime commercial and residential portfolios.</p>
+            <a href="blog-details.html" style="font-weight: 700; color: var(--accent);">Read Analysis <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call To Action -->
+  <section class="section section-dark" style="background-color: var(--primary);">
+    <div class="container" style="text-align: center;">
+      <span class="section-subtitle">Start Your Journey</span>
+      <h2 style="font-size: 2.85rem; color: white; margin-bottom: 1rem;">Ready to Acquire or Sell a Premier Property?</h2>
+      <p style="color: var(--text-light); max-width: 600px; margin: 0 auto 2.5rem; font-size: 1.1rem;">
+        Schedule a confidential consultation with one of our managing partners or submit your private acquisition requirements.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="enquiry.html" class="btn btn-gold btn-lg"><i class="fa-solid fa-paper-plane"></i> Submit Private Enquiry</a>
+        <a href="contact.html" class="btn btn-outline-white btn-lg"><i class="fa-solid fa-phone"></i> Contact Our Offices</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comprehensive Footer -->
+  <footer class="footer">
+    <div class="container footer-top">
+      <div class="grid grid-4">
+        <!-- Col 1 -->
+        <div>
+          <div class="logo footer-logo">
+            <div class="logo-icon"><i class="fa-solid fa-building-shield"></i></div>
+            <div class="logo-text">
+              <span class="logo-title">VAS</span>
+              <span class="logo-subtitle">ESTATES LUXURY</span>
+            </div>
+          </div>
+          <p class="footer-desc">
+            VAS Estates Luxury Real Estate is the international luxury brokerage recognized for unparalleled discretion, proprietary off-market listings, and institutional-grade real estate advisory.
+          </p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div>
+          <h4 class="footer-widget-title">Quick Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="about.html"><i class="fa-solid fa-angle-right"></i> About Our Firm</a></li>
+            <li><a href="properties.html"><i class="fa-solid fa-angle-right"></i> Featured Listings</a></li>
+            <li><a href="services.html"><i class="fa-solid fa-angle-right"></i> Bespoke Services</a></li>
+            <li><a href="agents.html"><i class="fa-solid fa-angle-right"></i> Advisory Council</a></li>
+            <li><a href="gallery.html"><i class="fa-solid fa-angle-right"></i> Visual Gallery</a></li>
+            <li><a href="faq.html"><i class="fa-solid fa-angle-right"></i> Investor FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3 -->
+        <div>
+          <h4 class="footer-widget-title">Asset Classes</h4>
+          <ul class="footer-links">
+            <li><a href="houses.html"><i class="fa-solid fa-angle-right"></i> Single Family Mansions</a></li>
+            <li><a href="apartments.html"><i class="fa-solid fa-angle-right"></i> Sky Penthouses</a></li>
+            <li><a href="land.html"><i class="fa-solid fa-angle-right"></i> Development Acreage</a></li>
+            <li><a href="commercial.html"><i class="fa-solid fa-angle-right"></i> Prime Commercial Assets</a></li>
+            <li><a href="rent.html"><i class="fa-solid fa-angle-right"></i> Luxury Rentals</a></li>
+            <li><a href="sale.html"><i class="fa-solid fa-angle-right"></i> High-Yield Acquisitions</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4 -->
+        <div>
+          <h4 class="footer-widget-title">Headquarters Desk</h4>
+          <p class="footer-desc" style="margin-bottom: 0.5rem;">
+            <i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> Airport Residential Area, Accra, Ghana
+          </p>
+          <p class="footer-desc" style="margin-bottom: 0.5rem;">
+            <i class="fa-solid fa-phone" style="color: var(--accent);"></i> <a href="tel:+233599120927" style="color: inherit;">+233 599 120 927</a>
+          </p>
+          <p class="footer-desc" style="margin-bottom: 1rem;">
+            <i class="fa-solid fa-envelope" style="color: var(--accent);"></i> <a href="mailto:somuahvincent18@gmail.com" style="color: inherit;">somuahvincent18@gmail.com</a>
+          </p>
+          <a href="https://wa.me/233599120927" target="_blank" class="btn btn-gold btn-sm" style="width: 100%; text-align: center; margin-bottom: 1.25rem;">
+            <i class="fa-brands fa-whatsapp"></i> Chat with Vincent Somuah
+          </a>
+          <form class="footer-newsletter-form" data-ajax-notify="Thank you for subscribing to our confidential investor intelligence.">
+            <input type="email" placeholder="Private Investor Email" required>
+            <button type="submit" class="btn btn-gold" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="footer-bottom">
+      <div class="container footer-bottom-content">
+        <div>
+          &copy; 2026 VAS Estates Luxury Real Estate. All rights reserved. Principal Broker: Vincent Somuah. Equal Housing Opportunity.
+        </div>
+        <div class="footer-legal-links">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="contact.html">Office Locations</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>
+
